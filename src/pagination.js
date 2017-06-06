@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import classNames from 'classnames'
 
 import 'font-awesome/css/font-awesome.css'
+import './paginate.less'
 
 class Pagination extends React.Component {
     constructor(props) {
@@ -21,19 +22,22 @@ class Pagination extends React.Component {
         return this.state.current < this._getPages()
     }
     // 上一页
-    _prev = () => {
+    _prev = (e) => {
+        e.preventDefault()
         if (this._hasPrev()) {
             this._handleChange(this.state.current - 1)
         }
     }
     // 下一页
-    _next = () => {
+    _next = (e) => {
+        e.preventDefault()
         if (this._hasNext()) {
             this._handleChange(this.state.current + 1)
         }
     }
     // 跳转
-    _jump = (page) => {
+    _jump = (e, page) => {
+        e.preventDefault()
         if (page !== this.state.current) {
             this._handleChange(page)
         }
@@ -112,7 +116,7 @@ class Pagination extends React.Component {
     _renderPage = (page) => {
         const {current} = this.state
         return (
-            <li key={page} onClick={() => this._jump(page)} className={classNames({
+            <li key={page} onClick={(e) => this._jump(e, page)} className={classNames({
                 'active': current === page
             })}>
                 <a href="#">{page}</a>
@@ -122,7 +126,7 @@ class Pagination extends React.Component {
     // 渲染省略
     _renderOmit = (key) => {
         return (
-            <li key={key} onClick={() => this._jump(page)} className={classNames('disabled')}>
+            <li key={key} onClick={(e) => this._jump(e, page)} className={classNames('disabled')}>
                 <a href="#">...</a>
             </li>
         )

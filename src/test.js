@@ -4,11 +4,10 @@ import Pagination from './pagination'
 
 import 'bootstrap/dist/css/bootstrap.css'
 // import '../tests/styles/pages.less'
-import '../tests/paginate.less'
 
 ReactDom.render(
     <Pagination
-        className="dataTables_paginate "
+        className="paginate "
         total={1000}
         onChange={(page, pageSize) => {
             console.log(page)
