@@ -152,13 +152,14 @@ class Pagination extends React.Component {
         const pages = this._getPages()
 
         let paginationComponent = null
-        // 5页以下
-        if (pages <= 5 + bufferPages) {
-            paginationComponent = this._renderLessPagination(pages)
-        } else {
-            paginationComponent = this._renderMorePagination(pages)
+        // 8页以下
+        if (total > 0) {
+            if (pages <= 5 + bufferPages) {
+                paginationComponent = this._renderLessPagination(pages)
+            } else {
+                paginationComponent = this._renderMorePagination(pages)
+            }
         }
-
         return (
             <div className={paginationClassNames}>
                 <ul>

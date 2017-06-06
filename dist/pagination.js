@@ -5380,13 +5380,14 @@ var Pagination = function (_React$Component) {
             var pages = this._getPages();
 
             var paginationComponent = null;
-            // 5页以下
-            if (pages <= 5 + bufferPages) {
-                paginationComponent = this._renderLessPagination(pages);
-            } else {
-                paginationComponent = this._renderMorePagination(pages);
+            // 8页以下
+            if (total > 0) {
+                if (pages <= 5 + bufferPages) {
+                    paginationComponent = this._renderLessPagination(pages);
+                } else {
+                    paginationComponent = this._renderMorePagination(pages);
+                }
             }
-
             return _react2.default.createElement(
                 'div',
                 { className: paginationClassNames },
